@@ -15,18 +15,40 @@ const createTodo = async (req, res) => {
   }
 };
 
-// create get method to get data 
+// create get method to get data
 
-const  getTodo = async (req,res)=>{
-    try {
-        const data = await Todo.find();
-        console.log("data fetching succesful!");
-        res.status(200).json(data);
-    } catch (error) {
-        console.log(error);
-        res.status(500),json({error : "internal server err"});
+const getTodo = async (req, res) => {
+  try {
+    const data = await Todo.find();
+    console.log("data fetching succesful!");
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500), json({ error: "internal server err" });
+  }
+};
+
+// create PUT method to update data
+
+const updateTodo = async (req, res) => {
+  try {
+    const todoId = req.params.id;
+    const updateTodo = req.body;
+
+    const response = await Todo.findByIdAndUpdate(todoId, updateTodo, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!response) {
+      return res.status(400).json({ err: "Todo NOT Found" });
     }
-}
+    console.log("Toda Update Succesfully");
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Err" });
+  }
+};
 
-
-module.exports = {createTodo, getTodo};
+module.exports = { createTodo, getTodo, updateTodo };
