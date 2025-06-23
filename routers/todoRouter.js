@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const createTodo = require("../controllers/TodoTask.js");
+const {createTodo} = require("../controllers/todoTask.js");
+const {getTodo} = require("../controllers/todoTask.js");
 
 
-router.post("/", createTodo); // 👈 use controller as callback
+ // use controller as callback
+router.post("/", createTodo);
+router.get("/", getTodo);
 
 module.exports = router;

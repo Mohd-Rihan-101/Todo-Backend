@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 const todoRouter = require('./routers/todoRouter');
 app.use("/todo", todoRouter);
 
+
 app.get("/", (req, res)=>{
     console.log("Welcome to Our Website");
 })
