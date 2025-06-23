@@ -51,4 +51,22 @@ const updateTodo = async (req, res) => {
   }
 };
 
-module.exports = { createTodo, getTodo, updateTodo };
+// create DELETE method to delete Todo
+const deleteTodo = async (req, res) => {
+  try {
+    const todoId = req.params.id;
+    const response = await Todo.findByIdAndDelete(todoId);
+
+    if (!response) {
+      return res.status(400).json({ err: "Todo NOT Found" });
+    }
+
+    console.log("Toda Delete Succesfully");
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ massage: "Internal server error" });
+  }
+};
+
+module.exports = { createTodo, getTodo, updateTodo , deleteTodo};
