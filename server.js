@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const passport = require('./auth');
 
 require('./db');
 
@@ -8,6 +9,8 @@ app.use(bodyParser.json());
 
 const todoRouter = require('./routers/todoRouter');
 app.use("/todo", todoRouter);
+
+
 
 
 app.get("/", (req, res)=>{
