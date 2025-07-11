@@ -4,7 +4,7 @@ const Todo = require('./models/todoSchema');
 
 passport.use(new LocalStrategy (async (USERNAME, password, done)=>{
     try {
-        const todo =await Todo.findOne({username :USERNAME});
+        const todo =await Todo.findOne({username : USERNAME});
 
         if(!todo){
             return done(null, false, {massage : "incorrect username"});

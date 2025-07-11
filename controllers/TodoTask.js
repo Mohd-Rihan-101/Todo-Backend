@@ -34,7 +34,6 @@ const updateTodo = async (req, res) => {
   try {
     const todoId = req.params.id;
     const updateTodo = req.body;
-
     const response = await Todo.findByIdAndUpdate(todoId, updateTodo, {
       new: true,
       runValidators: true,
